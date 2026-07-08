@@ -106,9 +106,12 @@ const Login = () => {
                     <button type="button" className={styles.linkButton}>
                         🎭 Guest Access
                     </button>
+                    <Link to="/register">
                     <button type="button" className={styles.linkButton}>
                         🎫 Create Account
                     </button>
+                    </Link>
+                   
                 </div>
             </form>
         </div>
