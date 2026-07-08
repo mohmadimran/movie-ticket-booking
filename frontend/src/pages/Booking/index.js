@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { getShow } from "../../api/show.api";
 import { createBooking } from "../../api/booking.api";
@@ -16,22 +16,22 @@ const Booking = () => {
 
   const [error, setError] = useState("");
 
-  // Wrap fetchShow in useCallback to stabilize it
-  const fetchShow = useCallback(async () => {
-    try {
-      const res = await getShow(id);
-      setShow(res.data);
-    } catch (err) {
-      console.error(err);
-      setError("Unable to load show.");
-    } finally {
-      setLoading(false);
-    }
-  }, [id]); // Add id as dependency
-
+  // Define fetchShow inside useEffect to avoid dependency issues
   useEffect(() => {
+    const fetchShow = async () => {
+      try {
+        const res = await getShow(id);
+        setShow(res.data);
+      } catch (err) {
+        console.error(err);
+        setError("Unable to load show.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchShow();
-  }, [fetchShow]); 
+  }, [id]); 
 
   const handleBooking = async (e) => {
     e.preventDefault();
