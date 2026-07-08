@@ -1,0 +1,637 @@
+.myBookingsContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Film reel decoration effect */
+.myBookingsContainer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 40% 60%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+  animation: rotate 45s linear infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Cinema curtain effect */
+.myBookingsContainer::after {
+  content: '📋';
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 5rem;
+  opacity: 0.05;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.05; transform: scale(1); }
+  50% { opacity: 0.1; transform: scale(1.1); }
+}
+
+.contentWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.pageTitle {
+  color: #f5f5f5;
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 20px rgba(255, 215, 0, 0.15);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.pageTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ffd700, transparent);
+  border-radius: 2px;
+}
+
+.pageTitle span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+/* Filter Section */
+.filterSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(20, 15, 45, 0.6);
+  padding: 10px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.filterLabel {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.filterSelect {
+  padding: 8px 30px 8px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  border-radius: 10px;
+  color: #f5f5f5;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffd700' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.filterSelect:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+.filterSelect option {
+  background: #1a1a2e;
+  color: #f5f5f5;
+}
+
+/* Loading & Empty States */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+}
+
+.loadingText {
+  color: #ffd700;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  animation: loadingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.loadingSpinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 215, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #ffd700;
+  animation: spin 1s linear infinite;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.emptyContainer {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.emptyIcon {
+  font-size: 5rem;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.emptyTitle {
+  color: #f5f5f5;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.emptySub {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.1rem;
+}
+
+/* Table Styles */
+.tableWrapper {
+  background: rgba(20, 15, 45, 0.92);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  overflow-x: auto;
+}
+
+.bookingsTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.bookingsTable thead {
+  background: rgba(255, 215, 0, 0.05);
+  border-bottom: 2px solid rgba(255, 215, 0, 0.1);
+}
+
+.bookingsTable th {
+  padding: 16px 20px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bookingsTable td {
+  padding: 16px 20px;
+  color: #f5f5f5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  vertical-align: middle;
+}
+
+.bookingsTable tbody tr {
+  transition: all 0.3s ease;
+}
+
+.bookingsTable tbody tr:hover {
+  background: rgba(255, 215, 0, 0.03);
+}
+
+.bookingsTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Status Colors */
+.statusConfirmed {
+  color: #4ade80;
+}
+
+.statusPending {
+  color: #fbbf24;
+}
+
+.statusCancelled {
+  color: #f87171;
+  opacity: 0.6;
+}
+
+.statusFailed {
+  color: #f87171;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusBadge.confirmed {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+}
+
+.statusBadge.pending {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.statusBadge.cancelled {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+}
+
+.statusBadge.failed {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+}
+
+.statusMessage {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btnUpdate {
+  padding: 6px 14px;
+  background: rgba(255, 215, 0, 0.1);
+  color: #ffd700;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btnUpdate:hover {
+  background: rgba(255, 215, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.15);
+}
+
+.btnCancel {
+  padding: 6px 14px;
+  background: rgba(248, 113, 113, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btnCancel:hover {
+  background: rgba(248, 113, 113, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(248, 113, 113, 0.15);
+}
+
+.noAction {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* Booking Count */
+.bookingCount {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.bookingCount strong {
+  color: #ffd700;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalContent {
+  background: rgba(20, 15, 45, 0.98);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modalTitle {
+  color: #f5f5f5;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.modalTitle span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 4px;
+}
+
+.modalTitle::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ffd700, transparent);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.modalInfo {
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin: 15px 0;
+  font-size: 0.9rem;
+}
+
+.modalInfo.pending {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+}
+
+.modalInfo.confirmed {
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.modalInfo.failed {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  color: #f87171;
+}
+
+.bookingDetails {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 12px;
+  margin: 15px 0;
+}
+
+.bookingDetails p {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 6px 0;
+  font-size: 0.95rem;
+}
+
+.bookingDetails p strong {
+  color: #f5f5f5;
+}
+
+.formGroup {
+  margin: 20px 0;
+}
+
+.formGroup label {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  outline: none;
+  color: #f5f5f5;
+  box-sizing: border-box;
+}
+
+.formGroup input:focus {
+  border-color: #ffd700;
+  background: rgba(255, 215, 0, 0.05);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.05);
+}
+
+.formGroup input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.formGroup input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.formGroup small {
+  display: block;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+  margin-top: 6px;
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btnModalCancel {
+  flex: 1;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnModalCancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.btnModalUpdate {
+  flex: 2;
+  padding: 14px;
+  background: linear-gradient(135deg, #ffd700 0%, #f9a825 100%);
+  color: #1a1a2e;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnModalUpdate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .headerSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .pageTitle {
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  .pageTitle::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .filterSection {
+    justify-content: center;
+  }
+  
+  .bookingsTable {
+    min-width: 600px;
+  }
+  
+  .bookingsTable th,
+  .bookingsTable td {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .myBookingsContainer {
+    padding: 20px 10px;
+  }
+  
+  .pageTitle {
+    font-size: 1.6rem;
+  }
+  
+  .filterSection {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+  }
+  
+  .filterSelect {
+    width: 100%;
+  }
+  
+  .bookingsTable {
+    min-width: 480px;
+  }
+  
+  .bookingsTable th,
+  .bookingsTable td {
+    padding: 10px 12px;
+    font-size: 0.75rem;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+  }
+  
+  .btnUpdate,
+  .btnCancel {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .modalContent {
+    padding: 25px 20px;
+  }
+  
+  .modalActions {
+    flex-direction: column;
+  }
+}

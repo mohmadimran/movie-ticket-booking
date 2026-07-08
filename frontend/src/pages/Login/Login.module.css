@@ -1,0 +1,326 @@
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Film reel decoration effect */
+.loginContainer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Cinema curtain effect */
+.loginContainer::after {
+  content: '🎬';
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 4rem;
+  opacity: 0.1;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(1.1); }
+}
+
+.styledForm {
+  background: rgba(20, 15, 45, 0.92);
+  backdrop-filter: blur(20px);
+  padding: 50px 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 215, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.styledForm:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 
+    0 30px 70px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(255, 215, 0, 0.2);
+}
+
+/* Ticket stub effect at the top */
+.styledForm::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 16px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 215, 0, 0.1) 10px,
+    rgba(255, 215, 0, 0.1) 12px
+  );
+  border-radius: 8px 8px 0 0;
+}
+
+.title {
+  text-align: center;
+  color: #f5f5f5;
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  position: relative;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Movie tagline */
+.title span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #ffd700;
+  letter-spacing: 3px;
+  margin-top: 8px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  border-radius: 2px;
+}
+
+.subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  letter-spacing: 0.5px;
+}
+
+.errorMessage {
+  background: rgba(255, 0, 0, 0.12);
+  color: #ff6b6b;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  animation: shake 0.5s ease;
+  text-align: center;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.inputGroup {
+  margin-bottom: 22px;
+  position: relative;
+}
+
+.styledInput {
+  width: 100%;
+  padding: 16px 20px 16px 48px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  outline: none;
+  color: #f5f5f5;
+  box-sizing: border-box;
+}
+
+.styledInput::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+.styledInput:focus::placeholder {
+  opacity: 0.5;
+}
+
+.styledInput:focus {
+  border-color: #ffd700;
+  background: rgba(255, 215, 0, 0.05);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.05);
+  transform: scale(1.02);
+}
+
+.styledInput:hover {
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+/* Input icons */
+.inputGroup::before {
+  content: attr(data-icon);
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.inputGroup:focus-within::before {
+  opacity: 0.8;
+}
+
+.styledButton {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #ffd700 0%, #f9a825 100%);
+  color: #1a1a2e;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.styledButton:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(255, 215, 0, 0.3);
+}
+
+.styledButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.styledButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Shimmer effect on button */
+.styledButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.styledButton:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.loadingSpinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(26, 26, 46, 0.2);
+  border-radius: 50%;
+  border-top-color: #1a1a2e;
+  animation: spin 0.8s linear infinite;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Guest/Register links */
+.footerLinks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.linkButton:hover {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .styledForm {
+    padding: 30px 20px;
+    border-radius: 18px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .title span {
+    font-size: 0.7rem;
+  }
+  
+  .styledInput {
+    padding: 14px 16px 14px 44px;
+    font-size: 0.95rem;
+  }
+  
+  .styledButton {
+    padding: 15px;
+    font-size: 1rem;
+  }
+  
+  .loginContainer::after {
+    font-size: 3rem;
+    bottom: 15px;
+    right: 20px;
+  }
+}

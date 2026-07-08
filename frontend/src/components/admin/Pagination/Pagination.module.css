@@ -1,0 +1,79 @@
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+}
+
+.pageInfo {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  margin-right: 10px;
+}
+
+.pageInfo strong {
+  color: #ffd700;
+}
+
+.pageButton {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.pageButton:hover:not(:disabled) {
+  background: rgba(255, 215, 0, 0.1);
+  color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.pageButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pageButton.active {
+  background: linear-gradient(135deg, #ffd700 0%, #f9a825 100%);
+  color: #1a1a2e;
+  border-color: #ffd700;
+}
+
+.pageButton.arrow {
+  padding: 8px 14px;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .paginationContainer {
+    gap: 5px;
+  }
+  
+  .pageButton {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    min-width: 32px;
+  }
+  
+  .pageInfo {
+    font-size: 0.75rem;
+    margin-right: 5px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+}

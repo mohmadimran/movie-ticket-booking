@@ -1,0 +1,473 @@
+/* Movie Theme - Consistent with all components */
+.manageContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  padding: 30px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Film reel decoration effect */
+.manageContainer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+  animation: rotate 45s linear infinite reverse;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Cinema curtain effect */
+.manageContainer::after {
+  content: '📋';
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 5rem;
+  opacity: 0.05;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.05; transform: scale(1); }
+  50% { opacity: 0.1; transform: scale(1.1); }
+}
+
+.contentWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.pageTitle {
+  color: #f5f5f5;
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 20px rgba(255, 215, 0, 0.15);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.pageTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ffd700, transparent);
+  border-radius: 2px;
+}
+
+.pageTitle span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+.headerStats {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.statBadge {
+  padding: 8px 18px;
+  background: rgba(20, 15, 45, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.statBadge strong {
+  color: #ffd700;
+  font-size: 1.1rem;
+}
+
+.statBadge.pending strong {
+  color: #fbbf24;
+}
+
+.statBadge.confirmed strong {
+  color: #4ade80;
+}
+
+/* Loading & Error States */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  flex-direction: column;
+}
+
+.loadingText {
+  color: #ffd700;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  animation: loadingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.loadingSpinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 215, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #ffd700;
+  animation: spin 1s linear infinite;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loadingSub {
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.errorContainer {
+  text-align: center;
+  padding: 40px;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.errorTitle {
+  color: #f87171;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.errorMessage {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 20px;
+}
+
+.retryButton {
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #ffd700 0%, #f9a825 100%);
+  color: #1a1a2e;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.retryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+/* Table Section */
+.tableWrapper {
+  background: rgba(20, 15, 45, 0.92);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  overflow-x: auto;
+}
+
+.bookingsTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.bookingsTable thead {
+  background: rgba(255, 215, 0, 0.05);
+  border-bottom: 2px solid rgba(255, 215, 0, 0.1);
+}
+
+.bookingsTable th {
+  padding: 16px 20px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bookingsTable td {
+  padding: 16px 20px;
+  color: #f5f5f5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  vertical-align: middle;
+}
+
+.bookingsTable tbody tr {
+  transition: all 0.3s ease;
+}
+
+.bookingsTable tbody tr:hover {
+  background: rgba(255, 215, 0, 0.03);
+}
+
+.bookingsTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* User Info */
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  color: #f5f5f5;
+  font-weight: 600;
+}
+
+.userEmail {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+/* Show Info */
+.showInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.showName {
+  color: #f5f5f5;
+  font-weight: 600;
+}
+
+.showTime {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+/* Seats Count */
+.seatsCount {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffd700;
+  text-align: center;
+}
+
+/* Status Badges */
+.statusBadge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusBadge.pending {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.statusBadge.confirmed {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+}
+
+.statusBadge.cancelled {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+}
+
+.statusBadge.failed {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btnConfirm {
+  padding: 8px 16px;
+  background: rgba(74, 222, 128, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.2);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btnConfirm:hover:not(:disabled) {
+  background: rgba(74, 222, 128, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(74, 222, 128, 0.15);
+}
+
+.btnConfirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btnReject {
+  padding: 8px 16px;
+  background: rgba(248, 113, 113, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btnReject:hover:not(:disabled) {
+  background: rgba(248, 113, 113, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(248, 113, 113, 0.15);
+}
+
+.btnReject:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.noActions {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* No Data */
+.noData {
+  text-align: center;
+  padding: 40px !important;
+}
+
+.noDataIcon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.noDataText {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .manageContainer {
+    padding: 20px 15px;
+  }
+  
+  .headerSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .pageTitle {
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  .pageTitle::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .headerStats {
+    justify-content: center;
+  }
+  
+  .bookingsTable {
+    min-width: 700px;
+  }
+  
+  .bookingsTable th,
+  .bookingsTable td {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.6rem;
+  }
+  
+  .statBadge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  
+  .bookingsTable {
+    min-width: 550px;
+  }
+  
+  .bookingsTable th,
+  .bookingsTable td {
+    padding: 10px 12px;
+    font-size: 0.75rem;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+  }
+  
+  .btnConfirm,
+  .btnReject {
+    width: 100%;
+    text-align: center;
+  }
+}
