@@ -1,4 +1,6 @@
 # 🎬 CINEMAHUB - Movie Ticket Booking Application
+🌐 Live Demo
+Deployment Link: https://movie-ticket-booking-flax.vercel.app/
 
 A full-featured movie ticket booking application built with the MERN stack (MongoDB, Express.js, React, Node.js). Users can browse shows, book tickets, manage bookings, and administrators can manage shows and bookings with ease.
 
@@ -250,8 +252,8 @@ vercel --prod
 
 ## 📞 Contact
 
-- **Project Link**: [https://github.com/yourusername/cinemahub](https://github.com/yourusername/cinemahub)
-- **Live Demo**: [https://cinemahub.com](https://cinemahub.com)
+- **Project Link**: [https://github.com/yourusername/cinemahub](https://github.com/imrankhan/cinemahub)
+- **Live Demo**: [https://cinemahub.com](https://movie-ticket-booking-flax.vercel.app/)
 
 
 ---
